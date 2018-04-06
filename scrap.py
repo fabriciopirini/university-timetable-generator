@@ -36,13 +36,7 @@ class SIGAA:
 			'acao': '',
 			'acessibilidade': ''
 		    }
-		    bla = c.post(url, data=login_data, headers={"Referer": "https://sigaa.unifei.edu.br/sigaa/verTelaLogin.do"})
-
-		    #blerg = c.get('http://sigaa.unifei.edu.br/sigaa/paginaInicial.do')
-
-		    #cookie = 'JSESSIONID=' + c.cookies.get_dict()['JSESSIONID']
-
-		    #print(cookie)
+		    c.post(url, data=login_data, headers={"Referer": "https://sigaa.unifei.edu.br/sigaa/verTelaLogin.do"})
 
 		    search_data = {
 			'form':'form',
@@ -73,8 +67,6 @@ class SIGAA:
 		    url_busca = 'https://sigaa.unifei.edu.br/sigaa/ensino/turma/busca_turma.jsf'
 		    c.get(url_busca)
 		    resposta = c.post(url_busca, data=search_data)
-
-		    #print(tryd.content)
 
 		    tree = html.fromstring(resposta.content)
 
@@ -113,6 +105,9 @@ class SIGAA:
 		    else:
 		        d[current_item].append(item)
 		return d
+
+	#def separa_turma():
+		
 
 	def save_obj(obj, name ):
 	    with open('obj/'+ name + '.pkl', 'wb') as f:
