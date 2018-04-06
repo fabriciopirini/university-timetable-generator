@@ -11,5 +11,10 @@ name = "pypi"
 
 [packages]
 
-requests = "==2.18.4"
-Flask = "==0.12.2"
+requests = "*"
+flask = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+flask-script = "*"
+"psycopg2" = "*"
+lxml = "*"
