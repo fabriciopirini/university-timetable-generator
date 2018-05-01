@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    {% endblock %}
+</head>
+<body>
+    <div id="content" style="max-width: 500px; padding:10px;">{% block content %}{% endblock %}</div>
+</body>
+</html>
