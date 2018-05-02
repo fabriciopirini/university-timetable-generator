@@ -1,4 +1,3 @@
-import os
 from flask import Flask, request, render_template
 from scrap import SIGAA
 import time

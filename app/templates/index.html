@@ -1,147 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset='utf-8' />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
-<link href='../static/fullcalendar.min.css' rel='stylesheet' />
-<link href='../static/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<script src='../static/moment.min.js'></script>
-<script src='../static/jquery.min.js'></script>
-<script src='../static/fullcalendar.min.js'></script>
-<script src='../static/fullcalendar-pt-br.js'></script>
-<script>
+    <meta charset='utf-8'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+    <link href='../static/fullcalendar.min.css' rel='stylesheet'/>
+    <link href='../static/fullcalendar.print.min.css' rel='stylesheet' media='print'/>
+    <script src='../static/moment.min.js'></script>
+    <script src='../static/jquery.min.js'></script>
+    <script src='../static/fullcalendar.min.js'></script>
+    <script src='../static/fullcalendar-pt-br.js'></script>
+    <script src='../static/base.js'></script>
+    <style>
 
-  const segunda = moment().weekday(1).set({hour:0,minute:0,second:0,millisecond:0});
-  // console.log(segunda)
-  $(function() {
+        .fc-time-grid-event .fc-time,
+        .fc-title {
+            font-size: 1em;
+        }
 
-        $('#calendar').fullCalendar({
-          defaultView: 'agendaWeek',
-          height: 'auto',
-          allDaySlot: false,
-          columnHeaderFormat: 'dddd',
-          minTime: '07:00:00',
-          maxTime: '23:30:00',
-          slotDuration: '00:55:00',
-          slotLabelFormat: 'H:mm',
-          eventBackgroundColor: '#9BD1E9',
-          slotEventOverlap: false,
-          nowIndicator: false,
-          header: {
-            left: '',
-            center: 'title',
-            right: ''
-          },
-          weekNumbers: false,
-          navLinks: false,
-          editable: false,
-          eventLimit: false,
-          firstDay: 1,
-          timeFormat: 'H:mm',
-          weekends: false,
-          events: [
-            {
-              title: 'ESSI39.2 - PERÍCIAS EM PERICULOSIDADE, INSALUBRIDADE E ACIDENTES DO TRABALHO (PRÁTICA)',
-              start: segunda.add(10, 'hours'),
-              end: segunda.add(2, 'hours')
-            },
-            {
-              title: 'Click for Google',
-              url: 'http://google.com/',
-              start: '2018-03-28'
-            }
-          ]
-      //     ,
-      //     eventRender: function(event, element) {
-      //       element.qtip({
-      //         content: event.description
-      //       });
-      //     }
-    });
-         $('#calendar').fullCalendar('unselect');
-    });
+        td.fc-today {
+            background: inherit !important;
+        }
 
-</script>
-<style>
+        .fc-title {
+            font-weight: bolder;
+        }
 
-  .fc-time-grid-event .fc-time,
-  .fc-title {
-    font-size: 1em;
-  }
+        #calendar {
+            max-width: 900px;
+            /* margin: 40px auto; */
+            padding: 0 10px;
+        }
 
-  td.fc-today {
-    background: inherit !important;
-  }
+        #title {
+            margin-bottom: 2rem;
+        }
 
-  .fc-title {
-    font-weight: bolder;
-  }
+        h1, h2 {
+            text-align: center;
+        }
 
-  #calendar {
-    max-width: 900px;
-    /* margin: 40px auto; */
-    padding: 0 10px;
-  }
+        #calendar > div.fc-toolbar.fc-header-toolbar {
+            display: none;
+        }
 
-  #title {
-    margin-bottom: 2rem;
-  }
+        #resultado_pesquisa {
+            margin-top: 1em;
+            margin-left: 1em;
+            overflow-y: scroll;
+        }
 
-  h1, h2 {
-    text-align: center;
-  }
+        .closeon {
+            position: absolute;
+            top: -2px;
+            right: 0;
+            cursor: pointer;
+            background-color: #FFF;
+            z-index: 2;
+        }
 
-  #calendar > div.fc-toolbar.fc-header-toolbar {
-    display: none;
-  }
-
-  #resultado_pesquisa {
-    margin-top: 1em;
-    margin-left: 1em;
-    overflow-y: scroll;
-  }
-
-</style>
-<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/united/bootstrap.min.css">
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/united/bootstrap.min.css">
 </head>
 <body>
-  <h1 id="title">UNIFEI-Timetable</h1>
-  <!-- $('#calendar').fullCalendar('removeEvents');
-  $('#calendar').fullCalendar('addEventSource', events); -->
-  <div class="container-fluid">
+<h1 id="title">UNIFEI-Timetable</h1>
+<!-- $('#calendar').fullCalendar('removeEvents');
+$('#calendar').fullCalendar('addEventSource', events); -->
+<div class="container-fluid">
     <div class="row justify-content-md-center">
         <div class="col-3">
-          <div class="row justify-content-md-center">
-            <form action="/" method="POST">
-              <label for="campoPesquisa">Pesquisar disciplina</label>
-              <input type="text" class="form-control" id="campoPesquisa" name="pesquisa" aria-describedby="ajudaPesquisa" placeholder="Digite o nome da disciplina desejada">
-              <small id="ajudaPesquisa" class="form-text text-muted">Nos diga o nome da disciplina desejada.</small>
-              <button type="submit" class="btn btn-default">Pesquisar</button>
-            </form>
-          </div>
-          <div class="row justify-content-md-center">
-            <table id="resultado_pesquisa" class="table table-striped">
-            <thead>
-            <tr>
-              <th>Nome</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for disciplina in disciplinas %}
-              <tr>
-              <td>{{ disciplina }}</td>
-              </tr>
-            {% endfor %}
-          </table>
+            <div class="row justify-content-md-center">
+                <form action="/" method="POST">
+                    <label for="campoPesquisa">Pesquisar disciplina</label>
+                    <input type="text" class="form-control" id="campoPesquisa" name="pesquisa"
+                           aria-describedby="ajudaPesquisa" placeholder="Digite o nome da disciplina desejada">
+                    <small id="ajudaPesquisa" class="form-text text-muted">Nos diga o nome da disciplina desejada.
+                    </small>
+                    <button type="submit" class="btn btn-default">Pesquisar</button>
+                </form>
+            </div>
+            <div class="row justify-content-md-center">
+                <table id="resultado_pesquisa" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for disciplina in disciplinas %}
+                        <tr onclick="insereEvento('{{ disciplina }}')">
+                            <td>{{ disciplina }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
-      </div>
-      <div class="col-9">
-        <h2>Horário</h2>
-        <div id='calendar'></div>
-      </div>
+        <div class="col-9">
+            <h2>Horário</h2>
+            <div id='calendar'></div>
+        </div>
     </div>
-  </div>
+</div>
 
 
 </body>
