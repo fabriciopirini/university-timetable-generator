@@ -27,7 +27,7 @@
         }
 
         #calendar {
-            max-width: 900px;
+            /* max-width: 900px; */
             /* margin: 40px auto; */
             padding: 0 10px;
         }
@@ -59,6 +59,17 @@
             z-index: 2;
         }
 
+        .rowTurma {
+            padding-left: 1.5em !important;
+        }
+
+        .rowDisciplina {
+            font-weight: bolder;
+        }
+
+        .fas {
+          font-size: 1.2em;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/united/bootstrap.min.css">
 </head>
@@ -83,14 +94,23 @@ $('#calendar').fullCalendar('addEventSource', events); -->
                 <table id="resultado_pesquisa" class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Nome</th>
+                        <th>Resultado</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for disciplina in disciplinas %}
-                        <tr onclick="insereEvento('{{ disciplina }}')">
-                            <td>{{ disciplina }}</td>
+
+                    <tr>
+                        <td class="rowDisciplina">{{ disciplina[1]|e }} - Curso: {{ disciplina[2]|e }}</td>
+                        {% for turma in turmas %}
+                          {% if turma[0] == disciplina[0] %}
+                            <tr>
+                                <td class="rowTurma">{{ turma[1]|e }} - {{ turma[2]|e }} - {{ turma[3]|e }} <i class="fas fa-plus-circle" onclick="insereEvento('{{ disciplina[1] }} ({{ turma[1] }})')"></i></td>
+                          {% endif %}
+                        {% endfor %}
                         </tr>
+                    </tr>
+
                     {% endfor %}
                 </table>
             </div>

@@ -21,18 +21,19 @@ class Turma(DB.Model):
 
     __tablename__ = 'turmas'
     id = DB.Column(DB.Integer, primary_key=True)
-    idDisciplina = DB.Column(DB.Integer, DB.ForeignKey(
-        'disciplinas.id'), primary_key=True)
+    idDisciplina = DB.Column(DB.Integer, DB.ForeignKey('disciplinas.id'), nullable=False)
     periodo = DB.Column(DB.String(10))
     nivel = DB.Column(DB.String(10))
     turma = DB.Column(DB.String(10))
     docente = DB.Column(DB.String(100))
     situacao = DB.Column(DB.String(10))
     horario = DB.Column(DB.String(1000))
-    local = DB.Column(DB.String(30))
+    local = DB.Column(DB.String(300))
     matriculados = DB.Column(DB.String(30))
+    curso = DB.Column(DB.String(5))
 
-    def __init__(self, idDisciplina, periodo=None, nivel=None, turma=None, docente=None, situacao=None, horario=None, local=None, matriculados=None):
+    def __init__(self, idDisciplina, periodo=None, nivel=None, turma=None, docente=None, situacao=None, horario=None,
+                 local=None, matriculados=None, curso=None):
         self.idDisciplina = idDisciplina
         self.periodo = periodo
         self.nivel = nivel
@@ -42,3 +43,4 @@ class Turma(DB.Model):
         self.horario = horario
         self.local = local
         self.matriculados = matriculados
+        self.curso = curso

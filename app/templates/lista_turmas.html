@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Lista turmas{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+  <h1>Turmas registradas</h1>
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Nome</th>
+    <th>Curso</th>
+    <th>Campus</th>
+  </tr>
+  </thead>
+  <tbody>
+  {% for disciplina in disciplinas %}
+    <tr>
+    <td>{{ disciplina.nome }}</td>
+    <td>{{ disciplina.curso }}</td>
+    <td>{{ disciplina.campus }}</td>
+    </tr>
+  {% endfor %}
+</table>
+{% endblock %}

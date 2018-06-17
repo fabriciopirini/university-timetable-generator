@@ -2,16 +2,7 @@ import requests
 from lxml import html
 import pickle
 import re
-# import logging
-# import http.client as http_client
-
-# http_client.HTTPConnection.debuglevel = 1
-
-# logging.basicConfig()
-# logging.getLogger().setLevel(logging.DEBUG)
-# requests_log = logging.getLogger("requests.packages.urllib3")
-# requests_log.setLevel(logging.DEBUG)
-# requests_log.propagate = True
+import unicodedata
 
 
 class SIGAA:
@@ -131,9 +122,11 @@ class SIGAA:
 
         for item in detalhes:
             if item in subjects:
-                current_item = item
+                current_item = unicodedata.normalize('NFKD', item).encode('ASCII', 'ignore')
+                # current_item = item
             else:
-                d[current_item].append(item)
+                d[current_item].append(unicodedata.normalize('NFKD', item).encode('ASCII', 'ignore'))
+                # d[current_item].append(item)
         return d
 
     def save_obj(obj, name):
