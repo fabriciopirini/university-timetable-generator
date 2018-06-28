@@ -70,11 +70,15 @@
         .fas {
           font-size: 1.2em;
         }
+
+        .adiciona {
+            cursor: pointer;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/united/bootstrap.min.css">
 </head>
 <body>
-<h1 id="title">UNIFEI-Timetable</h1>
+<h1 id="title" tabindex="0">UNIFEI-Timetable</h1>
 <!-- $('#calendar').fullCalendar('removeEvents');
 $('#calendar').fullCalendar('addEventSource', events); -->
 <div class="container-fluid">
@@ -94,18 +98,18 @@ $('#calendar').fullCalendar('addEventSource', events); -->
                 <table id="resultado_pesquisa" class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Resultado</th>
+                        <th tabindex="0">Resultado</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for disciplina in disciplinas %}
 
                     <tr>
-                        <td class="rowDisciplina">{{ disciplina[1]|e }} - Curso: {{ disciplina[2]|e }}</td>
+                        <td class="rowDisciplina" tabindex="0">{{ disciplina[1]|e }} - Curso: {{ disciplina[2]|e }}</td>
                         {% for turma in turmas %}
                           {% if turma[0] == disciplina[0] %}
                             <tr>
-                                <td class="rowTurma">{{ turma[1]|e }} - {{ turma[2]|e }} - {{ turma[3]|e }} <i class="fas fa-plus-circle" onclick="insereEvento('{{ disciplina[1] }} ({{ turma[1] }})')"></i></td>
+                                <td class="rowTurma" tabindex="0">{{ turma[1]|e }} - {{ turma[2]|e }} - {{ turma[3]|e }} <i class="fas fa-plus-circle adiciona" onclick="insereEvento('{{ disciplina[1] }} ({{ turma[1] }})')"></i></td>
                           {% endif %}
                         {% endfor %}
                         </tr>
@@ -116,8 +120,8 @@ $('#calendar').fullCalendar('addEventSource', events); -->
             </div>
         </div>
         <div class="col-9">
-            <h2>Horário</h2>
-            <div id='calendar'></div>
+            <h2 tabindex="0">Horário</h2>
+            <div id='calendar' tabindex="0"></div>
         </div>
     </div>
 </div>

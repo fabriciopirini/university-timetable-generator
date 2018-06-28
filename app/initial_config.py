@@ -22,7 +22,7 @@ APP.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://%s:%s@%s:%s/%s?ss
 DB = SQLAlchemy(APP)
 
 # debug SQLAlchemy queries
-toolbar = DebugToolbarExtension(APP)
+# toolbar = DebugToolbarExtension(APP)
 
 # initialize database migration management
 MIGRATE = Migrate(APP, DB)

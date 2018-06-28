@@ -1,0 +1,6 @@
+Começa na pasta root do projeto UNIFEI-Timetable:
+
+pip3 install -r requirements.txt
+cd app/
+export FLASK_APP=app.py
+flask run
