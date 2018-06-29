@@ -15,6 +15,8 @@ class FlaskService(object):
     def do_function(self):
         @APP.route('/', methods=["POST"])
         def pesquisa_disciplina():
+            if(request.form.get('pesquisa') == ""):
+                return render_template('index.html', disciplinas='', turmas='')
             texto = "".join(['%', request.form.get('pesquisa').upper(), '%'])
             resultadoTurmas = []
             resultadoDisciplinas = []
@@ -41,7 +43,7 @@ class FlaskService(object):
                     # return (str(disciplina.nome) for disciplina in resultado)
                     return render_template('index.html', disciplinas=resultadoDisciplinas, turmas=resultadoTurmas)
                 else:
-                    return render_template('index.html', disciplinas='', turmas='')
+                    return render_template('index.html', disciplinas='0', turmas='')
             except:
                 logging.warning("Pesquisa não rolou")
                 return render_template('index.html', disciplinas='', turmas='')
