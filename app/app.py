@@ -46,7 +46,7 @@ class FlaskService(object):
                     return render_template('index.html', disciplinas='0', turmas='')
             except:
                 logging.warning("Pesquisa não rolou")
-                return render_template('index.html', disciplinas='', turmas='')
+                return render_template('index.html', disciplinas='1', turmas='')
 
         @APP.route('/', methods=["GET"])
         def inicio():

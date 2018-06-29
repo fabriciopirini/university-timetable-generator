@@ -106,6 +106,8 @@ $('#calendar').fullCalendar('addEventSource', events); -->
 
                     {% if disciplinas == '0' %}
                         <tr><td> Nenhuma disciplina encontrada </td></tr>
+                    {% elif disciplinas == '1' %}
+                        <tr><td> A pesquisa não pode ser concluída </td></tr>
                     {% else %}
                         {% for disciplina in disciplinas %}
                         <tr>
